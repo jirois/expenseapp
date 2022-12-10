@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import './transaction.dart';
 import 'package:flutter/material.dart';
 
@@ -49,6 +51,22 @@ class MyAppHome extends StatelessWidget {
                 child: const Text('CHART'),
                 elevation: 5,
               )),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(labelText: 'title'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'amount'),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Column(
               children: transactions.map((tx) {
             return Card(
