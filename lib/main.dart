@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Expense App', home: MyAppHome());
+    return MaterialApp(
+      title: 'Expense App',
+      home: MyAppHome(),
+    );
   }
 }
 
@@ -35,6 +38,8 @@ class MyAppHome extends StatelessWidget {
     ),
   ];
 
+  late String titleInput;
+  late String amountInput;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,10 +64,19 @@ class MyAppHome extends StatelessWidget {
                 children: [
                   TextField(
                     decoration: InputDecoration(labelText: 'title'),
+                    onChanged: (val) => titleInput = val,
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: 'amount'),
+                    onChanged: (val) => amountInput = val,
                   ),
+                  TextButton(
+                    child: const Text('Add Transaction'),
+                    onPressed: () {
+                      print(titleInput);
+                      print(amountInput);
+                    },
+                  )
                 ],
               ),
             ),
