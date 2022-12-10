@@ -1,3 +1,4 @@
+import './transaction.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,22 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppHome extends StatelessWidget {
-  const MyAppHome({super.key});
+  MyAppHome({super.key});
+
+  final List<Transaction> transactions = [
+    Transaction(
+      id: 't1',
+      title: 'Milk Shake',
+      amount: 45.22,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Jolly Rice',
+      amount: 45.22,
+      date: DateTime.now(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +40,6 @@ class MyAppHome extends StatelessWidget {
         title: const Text('Expenses App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -34,9 +49,48 @@ class MyAppHome extends StatelessWidget {
                 child: const Text('CHART'),
                 elevation: 5,
               )),
-          const Card(
-            child: Text('List of Tx'),
-          )
+          Column(
+              children: transactions.map((tx) {
+            return Card(
+              child: Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      color: Colors.orange,
+                      width: 2,
+                    )),
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      tx.amount.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: Colors.orange),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        tx.title,
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        tx.date.toString(),
+                        style: TextStyle(color: Colors.grey),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            );
+          }).toList())
         ],
       ),
     );
