@@ -23,8 +23,21 @@ class MyAppHome extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Expenses App'),
       ),
-      body: const Center(
-        child: Text('Welcome to app expense'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+              width: double.infinity,
+              child: const Card(
+                color: Colors.blue,
+                child: const Text('CHART'),
+                elevation: 5,
+              )),
+          const Card(
+            child: Text('List of Tx'),
+          )
+        ],
       ),
     );
   }
